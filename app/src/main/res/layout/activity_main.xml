@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:background="@color/white">
+
+    <!-- Sección del Logo y Título -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <!-- Título del Juego -->
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="125dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Logo del Juego"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/gameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Casino"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="top" /> <!-- Alinea el título al principio -->
+    </LinearLayout>
+
+    <!-- Sección de Datos del Jugador -->
+    <TextView
+        android:id="@+id/playerData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos del Jugador"
+        android:textSize="18sp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
+        android:background="@color/gray_light"
+        android:padding="10dp"
+        android:gravity="center" />
+
+    <!-- Icono de Control -->
+    <ImageView
+        android:id="@+id/controlImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/foto"
+        android:contentDescription="Icono de control"
+        android:layout_marginTop="16dp" />
+
+
+    <!-- Nombre del Jugador -->
+    <EditText
+        android:id="@+id/playerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Jugador"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/text_view_border"
+        android:padding="8dp"/>
+
+    <!-- Fecha de Nacimiento -->
+    <TextView
+        android:id="@+id/birthdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:hint="Selecciona tu fecha de nacimiento"
+        android:padding="8dp"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        android:background="@drawable/text_view_border" />
+
+    <!-- Fondo de Apuestas -->
+    <EditText
+        android:id="@+id/betAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fondo de Apuestas"
+        android:inputType="numberDecimal"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:background="@drawable/text_view_border" />/>
+
+    <!-- Cantidad de Dados -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/diceCountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cantidad de Dados"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_weight="3" /> <!-- Esto permite que el TextView ocupe el espacio necesario -->
+
+        <Spinner
+            android:id="@+id/diceCount"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:entries="@array/dice_options"
+            android:background="@drawable/text_view_border"
+            android:padding="8dp"/>
+    </LinearLayout>
+
+
+    <!-- Botón Ingresar -->
+    <Button
+        android:id="@+id/enterButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingresar"
+        android:layout_marginTop="16dp" />
+
+    <!-- Mensaje de advertencia -->
+    <TextView
+        android:id="@+id/warningMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recuerda que los juegos de azar pueden ser adictivos."
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginTop="16dp"
+        android:gravity="center" />
+</LinearLayout>

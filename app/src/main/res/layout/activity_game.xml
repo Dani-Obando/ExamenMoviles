@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Sección de Título y Logo -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <!-- Título del Juego -->
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="125dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Logo del Juego"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/gameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Casino"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="top" />
+    </LinearLayout>
+
+    <!-- Sección Principal: Tres secciones alineadas horizontalmente -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Sección 1: Datos del Jugador -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/playerNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jugador: "
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/availableAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monto Disponible: "
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/betAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monto Apostado: "
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/diceLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dados del Juego:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:id="@+id/diceContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <!-- Sección 2: Selección de Apuestas -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Marca tu Apuesta:"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioGroup
+                android:id="@+id/diceBetRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton android:id="@+id/bet01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="01" />
+                <RadioButton android:id="@+id/bet02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="02" />
+                <RadioButton android:id="@+id/bet03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="03" />
+                <RadioButton android:id="@+id/bet04" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="04" />
+                <RadioButton android:id="@+id/bet05" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05" />
+                <RadioButton android:id="@+id/bet06" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="06" />
+                <RadioButton android:id="@+id/bet07" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="07" />
+                <RadioButton android:id="@+id/bet08" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="08" />
+                <RadioButton android:id="@+id/bet09" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="09" />
+                <RadioButton android:id="@+id/bet10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/launchDiceButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lanzar Dados"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
+
+        <!-- Sección 3: Estado del Juego -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:text="Estado:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginBottom="4dp"/>
+
+            <ImageView
+                android:id="@+id/statusImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/smiley_face" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

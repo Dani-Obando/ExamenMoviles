@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Casino</string>
+    <string-array name="dice_options">
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+</resources>
