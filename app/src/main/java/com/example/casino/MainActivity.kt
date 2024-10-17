@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         diceCountSpinner = findViewById(R.id.diceCount)
         enterButton = findViewById(R.id.enterButton)
 
+
+
         birthdateTextView.setOnClickListener {
             showDatePicker()
         }
@@ -76,13 +78,22 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        val diceCount = diceCountSpinner.selectedItem.toString().toInt()
+        if (diceCount < 2 || diceCount > 3) {
+            showToast("La cantidad de dados debe ser 2 o 3.")
+            return
+        }
+
         val intent = Intent(this, GameActivity::class.java)
         intent.putExtra("PLAYER_NAME", playerName)
-        intent.putExtra("AVAILABLE_AMOUNT", "2000000") // Reemplaza con el monto real disponible
+        intent.putExtra("AVAILABLE_AMOUNT", "2000000")
         intent.putExtra("BET_AMOUNT", betAmountString)
-        intent.putExtra("DICE_COUNT", diceCountSpinner.selectedItem.toString().toInt()) // Cambia esto según cómo obtengas la cantidad de dados
+        intent.putExtra("DICE_COUNT", diceCount)
         startActivity(intent)
     }
+
+
+
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

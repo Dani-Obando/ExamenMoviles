@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jugador: "
-                android:textSize="20sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
 
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Monto Disponible: "
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
 
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Monto Apostado: "
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
 
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dados del Juego:"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"/>
@@ -90,11 +90,21 @@
                 android:orientation="horizontal"
                 android:gravity="center" />
 
+            <Button
+                android:id="@+id/launchDiceButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lanzar Dados"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"/>
+
+
+
         </LinearLayout>
 
         <!-- Sección 2: Selección de Apuestas -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
@@ -107,32 +117,118 @@
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"/>
 
-            <RadioGroup
-                android:id="@+id/diceBetRadioGroup"
+            <GridLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="186dp"
+                android:columnCount="4"
+                android:rowCount="5">
 
-                <RadioButton android:id="@+id/bet01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="01" />
-                <RadioButton android:id="@+id/bet02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="02" />
-                <RadioButton android:id="@+id/bet03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="03" />
-                <RadioButton android:id="@+id/bet04" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="04" />
-                <RadioButton android:id="@+id/bet05" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05" />
-                <RadioButton android:id="@+id/bet06" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="06" />
-                <RadioButton android:id="@+id/bet07" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="07" />
-                <RadioButton android:id="@+id/bet08" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="08" />
-                <RadioButton android:id="@+id/bet09" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="09" />
-                <RadioButton android:id="@+id/bet10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10" />
-            </RadioGroup>
+                <RadioButton
+                    android:id="@+id/bet01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="01" />
 
-            <Button
-                android:id="@+id/launchDiceButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lanzar Dados"
-                android:layout_marginTop="16dp"/>
+                <RadioButton
+                    android:id="@+id/bet02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="02" />
+
+                <RadioButton
+                    android:id="@+id/bet03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="03" />
+
+                <RadioButton
+                    android:id="@+id/bet04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="04" />
+
+                <RadioButton
+                    android:id="@+id/bet05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="05" />
+
+                <RadioButton
+                    android:id="@+id/bet06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="06" />
+
+                <RadioButton
+                    android:id="@+id/bet07"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="07" />
+
+                <RadioButton
+                    android:id="@+id/bet08"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="08" />
+
+                <RadioButton
+                    android:id="@+id/bet09"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="09" />
+
+                <RadioButton
+                    android:id="@+id/bet10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10" />
+
+                <RadioButton
+                    android:id="@+id/bet11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11"/>
+                <RadioButton
+                    android:id="@+id/bet12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12" />
+                <RadioButton
+                    android:id="@+id/bet13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13" />
+                <RadioButton
+                    android:id="@+id/bet14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14" />
+                <RadioButton
+                    android:id="@+id/bet15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15" />
+                <RadioButton
+                    android:id="@+id/bet16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16" />
+                <RadioButton
+                    android:id="@+id/bet17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17" />
+                <RadioButton
+                    android:id="@+id/bet18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18" />
+
+
+            </GridLayout>
 
         </LinearLayout>
+
 
         <!-- Sección 3: Estado del Juego -->
         <LinearLayout
