@@ -16,7 +16,7 @@
         <!-- Título del Juego -->
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="125dp"
+            android:layout_width="110dp"
             android:layout_height="100dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="Logo del Juego"
@@ -88,7 +88,7 @@
         android:inputType="numberDecimal"
         android:layout_marginTop="16dp"
         android:padding="8dp"
-        android:background="@drawable/text_view_border" />/>
+        android:background="@drawable/text_view_border" />
 
     <!-- Cantidad de Dados -->
     <LinearLayout

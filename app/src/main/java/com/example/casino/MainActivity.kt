@@ -86,10 +86,11 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, GameActivity::class.java)
         intent.putExtra("PLAYER_NAME", playerName)
-        intent.putExtra("AVAILABLE_AMOUNT", "2000000")
+        intent.putExtra("AVAILABLE_AMOUNT", betAmountString) // Pasar el monto ingresado por el usuario
         intent.putExtra("BET_AMOUNT", betAmountString)
         intent.putExtra("DICE_COUNT", diceCount)
         startActivity(intent)
+
     }
 
 

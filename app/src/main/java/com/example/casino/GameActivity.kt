@@ -3,10 +3,12 @@ package com.example.casino
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.random.Random
 
@@ -19,6 +21,10 @@ class GameActivity : AppCompatActivity() {
     private lateinit var launchDiceButton: Button
     private lateinit var statusImageView: ImageView
     private lateinit var radioButtons: List<RadioButton>
+    private lateinit var betAmountEditText: EditText
+
+    private var totalAmount: Int = 0
+    private var betAmount: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,19 +36,15 @@ class GameActivity : AppCompatActivity() {
         diceContainer = findViewById(R.id.diceContainer)
         launchDiceButton = findViewById(R.id.launchDiceButton)
         statusImageView = findViewById(R.id.statusImageView)
+        betAmountEditText = findViewById(R.id.betAmountEditText)
 
-        // Obtener datos del Intent
         val playerName = intent.getStringExtra("PLAYER_NAME") ?: "Jugador"
-        val availableAmount = intent.getStringExtra("AVAILABLE_AMOUNT") ?: "0"
-        val betAmount = intent.getStringExtra("BET_AMOUNT") ?: "0"
-        val diceCount = intent.getIntExtra("DICE_COUNT", 3) // Usar 3 por defecto
+        totalAmount = intent.getStringExtra("AVAILABLE_AMOUNT")?.toInt() ?: 0
+        val diceCount = intent.getIntExtra("DICE_COUNT", 3)
 
-        // Mostrar datos en TextViews
         playerNameTextView.text = "Jugador: $playerName"
-        availableAmountTextView.text = "Monto Disponible: $availableAmount"
-        betAmountTextView.text = "Monto Apostado: $betAmount"
+        availableAmountTextView.text = "Monto Disponible: $totalAmount"
 
-        // Inicializar los RadioButtons
         radioButtons = listOf(
             findViewById(R.id.bet01),
             findViewById(R.id.bet02),
@@ -64,26 +66,33 @@ class GameActivity : AppCompatActivity() {
             findViewById(R.id.bet18)
         )
 
-        // Mostrar dados seleccionados
         showSelectedDice(diceCount)
-
-        // Configurar opciones de apuesta
         setupBetOptions(diceCount)
 
-        // Configurar el botón de lanzar dados
         launchDiceButton.setOnClickListener {
-            randomizeDice()
+            val betInput = betAmountEditText.text.toString()
+            if (betInput.isNotEmpty()) {
+                betAmount = betInput.toInt()
+                if (betAmount <= totalAmount && betAmount > 0) {
+                    if (validateBetSelection()) {
+                        randomizeDice()
+                    } else {
+                        Toast.makeText(this, "Por favor, selecciona una apuesta.", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, "El monto apostado no puede ser mayor al monto disponible ni menor o igual a cero.", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Por favor, ingresa un monto apostado.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private fun showSelectedDice(diceCount: Int) {
         diceContainer.removeAllViews()
-
-        // Mostrar el número de dados seleccionados por el usuario
         for (i in 1..diceCount) {
             val diceImageView = ImageView(this)
-            val diceResId = resources.getIdentifier("dice1", "drawable", packageName) // Mostrar el dado por defecto
-
+            val diceResId = resources.getIdentifier("dice1", "drawable", packageName)
             if (diceResId != 0) {
                 diceImageView.setImageResource(diceResId)
                 diceImageView.layoutParams = LinearLayout.LayoutParams(100, 100)
@@ -94,34 +103,67 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun randomizeDice() {
+        var total = 0
         for (i in 0 until diceContainer.childCount) {
             val diceImageView = diceContainer.getChildAt(i) as ImageView
-            val randomNumber = Random.nextInt(1, 7) // Número aleatorio del 1 al 6
+            val randomNumber = Random.nextInt(1, 7)
+            total += randomNumber
             val diceResId = resources.getIdentifier("dice$randomNumber", "drawable", packageName)
-
             if (diceResId != 0) {
                 diceImageView.setImageResource(diceResId)
             }
         }
+        checkBetResult(total)
+        for (button in radioButtons) {
+            button.isChecked = false
+        }
+    }
+
+    private fun checkBetResult(total: Int) {
+        val selectedBetId = radioButtons.find { it.isChecked }?.id ?: -1
+        if (selectedBetId != -1) {
+            val selectedBetValue = findViewById<RadioButton>(selectedBetId).text.toString().toInt()
+            if (total == selectedBetValue) {
+                totalAmount += (betAmount*2)
+                statusImageView.setImageResource(R.drawable.win)
+                Toast.makeText(this, "¡Ganaste!", Toast.LENGTH_SHORT).show()
+            } else {
+                totalAmount -= betAmount
+                if (totalAmount < 0) totalAmount = 0
+                statusImageView.setImageResource(R.drawable.loose)
+                Toast.makeText(this, "Perdiste.", Toast.LENGTH_SHORT).show()
+            }
+            availableAmountTextView.text = "Monto Disponible: $totalAmount"
+        } else {
+            Toast.makeText(this, "Selecciona una apuesta válida.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun validateBetSelection(): Boolean {
+        return radioButtons.any { it.isChecked }
     }
 
     private fun setupBetOptions(diceCount: Int) {
         for (button in radioButtons) {
             button.visibility = View.GONE
+            button.setOnClickListener {
+                for (otherButton in radioButtons) {
+                    if (otherButton != button) {
+                        otherButton.isChecked = false
+                    }
+                }
+            }
         }
-
         if (diceCount == 2) {
-            for (i in 0..10) { // 2 a 12 (11 opciones)
+            for (i in 0..10) {
                 radioButtons[i].visibility = View.VISIBLE
-                radioButtons[i].text = String.format("%02d", i + 2) // Apuestas de 2 a 12
+                radioButtons[i].text = String.format("%02d", i + 2)
             }
         } else if (diceCount == 3) {
-            for (i in 0..15) { // 3 a 18 (16 opciones)
+            for (i in 0..15) {
                 radioButtons[i].visibility = View.VISIBLE
-                radioButtons[i].text = String.format("%02d", i + 3) // Apuestas de 3 a 18
+                radioButtons[i].text = String.format("%02d", i + 3)
             }
         }
     }
-
-
 }
